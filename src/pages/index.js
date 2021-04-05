@@ -5,6 +5,12 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Link from '../components/link';
 
+let defaultWidth
+
+if (typeof window !== `undefined`) {
+  defaultWidth = window.outerWidth
+}
+
 export default () => {
   const front = useRef();
   const back = useRef();
@@ -14,11 +20,11 @@ export default () => {
   const bottom = useRef();
   const cubecontainer = useRef();
   const cube = useRef();
-  const [cubeWidth, setCubeWidth] = useState(600)
+  const [cubeWidth, setCubeWidth] = useState(defaultWidth)
 
   useEffect(() => {
     function handleResize() {
-      setCubeWidth(Math.max(Math.min(window.innerWidth, 600), 312));
+      setCubeWidth(Math.max(Math.min(window.outerWidth, 600), 312));
     } 
     window.addEventListener("resize", handleResize);    
     handleResize();
