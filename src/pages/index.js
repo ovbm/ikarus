@@ -8,7 +8,7 @@ import Link from '../components/link';
 let defaultWidth
 
 if (typeof window !== `undefined`) {
-  defaultWidth = window.outerWidth
+  defaultWidth = document.documentElement.clientWidth
 }
 
 export default () => {
@@ -24,7 +24,7 @@ export default () => {
 
   useEffect(() => {
     function handleResize() {
-      setCubeWidth(Math.max(Math.min(window.outerWidth, 600), 312));
+      setCubeWidth(Math.max(Math.min(document.documentElement.clientWidth, 600), 312));
     } 
     window.addEventListener("resize", handleResize);    
     handleResize();
