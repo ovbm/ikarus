@@ -132,7 +132,7 @@ export default () => {
                       src="https://bandcamp.com/EmbeddedPlayer/album=3587457344/size=large/bgcol=transparent/linkcol=63b2cc/minimal=true/transparent=true/"
                       seamless
                     >
-                      <a href="http://roninrhythmrecords.bandcamp.com/album/mosaismic">
+                      <a href="https://www.nikbaertsch.com/ronin-rhythm-records/ikarus.html">
                         Mosaismic by IKARUS
                       </a>
                     </ResponsiveIFrame>
