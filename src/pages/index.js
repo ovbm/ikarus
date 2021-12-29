@@ -5,13 +5,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Link from '../components/link';
 
-let defaultWidth
-
-if (typeof window !== `undefined`) {
-  defaultWidth = document.documentElement.clientWidth
-}
-
-export default () => {
+const Home = () => {
   const front = useRef();
   const back = useRef();
   const right = useRef();
@@ -20,41 +14,48 @@ export default () => {
   const bottom = useRef();
   const cubecontainer = useRef();
   const cube = useRef();
-  const [cubeWidth, setCubeWidth] = useState(defaultWidth)
+  const [cubeWidth, setCubeWidth] = useState(
+    typeof window !== `undefined` &&
+      Math.max(Math.min(document.documentElement.clientWidth, 600), 312),
+  );
+  const [activeSide, setActiveSide] = useState('show-front');
 
   useEffect(() => {
     function handleResize() {
-      setCubeWidth(Math.max(Math.min(document.documentElement.clientWidth, 600), 312));
-    } 
-    window.addEventListener("resize", handleResize);    
+      setCubeWidth(
+        Math.max(Math.min(document.documentElement.clientWidth, 600), 312),
+      );
+    }
+    window.addEventListener('resize', handleResize);
     handleResize();
-    
-    return () => window.removeEventListener("resize", handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
-      front.current.style.transform = `translate3d(0,0,${cubeWidth / 2}px)`;
-      back.current.style.transform = `rotateX(-180deg) translate3d(0,0,${
-        cubeWidth / 2
-      }px)`;
-      left.current.style.transform = `rotateY(-90deg) translate3d(0,0,${
-        cubeWidth / 2
-      }px)`;
-      right.current.style.transform = `rotateY(90deg) translate3d(0,0,${
-        cubeWidth / 2
-      }px)`;
-      top.current.style.transform = `rotateX(90deg) translate3d(0,0,${
-        cubeWidth / 2
-      }px)`;
-      bottom.current.style.transform = `rotateX(-90deg) translate3d(0,0,${
-        cubeWidth / 2
-      }px)`;
-      cubecontainer.current.style.width = `${cubeWidth}px`;
-      cubecontainer.current.style.height = `${cubeWidth}px`;
-      cube.current.style.transform = `translate3d(0,0,${-cubeWidth / 2}px)`;
+    front.current.style.transform = `translate3d(0,0,${cubeWidth / 2}px)`;
+    back.current.style.transform = `rotateX(-180deg) translate3d(0,0,${
+      cubeWidth / 2
+    }px)`;
+    left.current.style.transform = `rotateY(-90deg) translate3d(0,0,${
+      cubeWidth / 2
+    }px)`;
+    right.current.style.transform = `rotateY(90deg) translate3d(0,0,${
+      cubeWidth / 2
+    }px)`;
+    top.current.style.transform = `rotateX(90deg) translate3d(0,0,${
+      cubeWidth / 2
+    }px)`;
+    bottom.current.style.transform = `rotateX(-90deg) translate3d(0,0,${
+      cubeWidth / 2
+    }px)`;
+    cubecontainer.current.style.width = `${cubeWidth}px`;
+    cubecontainer.current.style.height = `${cubeWidth}px`;
+    cube.current.style.transform = `translate3d(0,0,${-cubeWidth / 2}px)`;
   }, [cubeWidth]);
 
   const onButtonClick = function (side) {
+    setActiveSide(side);
     // eslint-disable-next-line default-case
     switch (side) {
       case 'show-front':
@@ -96,22 +97,25 @@ export default () => {
       />
       <Content>
         <ButtonContainer>
-          <Button type="button" onClick={() => onButtonClick('show-front')}>
+          <Button
+            active={activeSide === 'show-front'}
+            type="button"
+            onClick={() => onButtonClick('show-front')}
+          >
             MOSAISMIC
           </Button>
-          {/* <Button type="button" onClick={() => onButtonClick('show-right')}>
-            MUSIC
-          </Button> */}
-          <Button onClick={() => onButtonClick('show-left')} type="button">
+          <Button
+            active={activeSide === 'show-left'}
+            onClick={() => onButtonClick('show-left')}
+            type="button"
+          >
             CHRONOSOME
           </Button>
-          {/* <Button onClick={() => onButtonClick('show-top')} type="button">
-            BAND
-          </Button> */}
-          {/* <Button onClick={() => onButtonClick('show-bottom')} type="button">
-            LIVE
-          </Button> */}
-          <Button onClick={() => onButtonClick('show-back')} type="button">
+          <Button
+            active={activeSide === 'show-back'}
+            onClick={() => onButtonClick('show-back')}
+            type="button"
+          >
             ECHO
           </Button>
         </ButtonContainer>
@@ -123,7 +127,12 @@ export default () => {
             className="container"
           >
             <Cube width={cubeWidth} ref={cube} id="cube" className="show-front">
-              <Side ref={front} id="frontside" className="side front">
+              <Side
+                width={cubeWidth}
+                ref={front}
+                id="frontside"
+                className="side front"
+              >
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
@@ -144,16 +153,14 @@ export default () => {
                       target="_blank"
                     >
                       Bandcamp
-                    </Link>
-                    {' '}
+                    </Link>{' '}
                     <Link
                       outward
                       href="https://itunes.apple.com/ch/album/mosaismic/1456623755?l=en"
                       target="_blank"
                     >
                       Apple Music
-                    </Link>
-                    {' '}
+                    </Link>{' '}
                     <Link
                       outward
                       href="https://open.spotify.com/album/5mV7SxyBEXZZRIGsCP2OpK"
@@ -186,16 +193,14 @@ export default () => {
                       target="_blank"
                     >
                       Bandcamp
-                    </Link>
-                    {' '}
+                    </Link>{' '}
                     <Link
                       outward
                       href="https://itunes.apple.com/ch/album/echo/980401683?l=en"
                       target="_blank"
                     >
                       Apple Music
-                    </Link>
-                    {' '}
+                    </Link>{' '}
                     <Link
                       outward
                       href="https://open.spotify.com/album/3RON3rug8YFHwMi2JEcmDD"
@@ -230,16 +235,14 @@ export default () => {
                       target="_blank"
                     >
                       Bandcamp
-                    </Link>
-                    {' '}
+                    </Link>{' '}
                     <Link
                       outward
                       href="https://itunes.apple.com/ch/album/chronosome/1410685423?l=en"
                       target="_blank"
                     >
                       Apple Music
-                    </Link>
-                    {' '}
+                    </Link>{' '}
                     <Link
                       outward
                       href="https://open.spotify.com/album/06z7uZ5PiYF8xEMiSMnauQ"
@@ -316,6 +319,7 @@ const Button = styled.button`
   cursor: pointer;
   outline: inherit;
   transition: all 0.3s ease 0s;
+  font-weight: ${(props) => (props.active ? 'bold' : 'normal')};
   &:hover {
     letter-spacing: 0.1em;
   }
@@ -334,7 +338,7 @@ const Cube = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  transform: ${props => `translate3d(0,0,${-props.width/2}px)`};
+  transform: ${(props) => `translate3d(0,0,${-props.width / 2}px)`};
   transform-style: preserve-3d;
   transition: transform 3s;
 `;
@@ -346,6 +350,7 @@ const Side = styled.div`
   height: 100%;
   border: 2px solid #9bc5d5;
   backface-visibility: hidden;
+  transform: ${(props) => `translate3d(0,0,${-props.width / 2}px)`};
 `;
 
 const ContentBox = styled.div`
@@ -374,3 +379,5 @@ const ResponsiveIFrame = styled.iframe`
   width: 100%;
   height: 100%;
 `;
+
+export default Home;
