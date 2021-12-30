@@ -27,8 +27,6 @@ const Home = () => {
       );
     }
     window.addEventListener('resize', handleResize);
-    handleResize();
-
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -350,7 +348,6 @@ const Side = styled.div`
   height: 100%;
   border: 2px solid #9bc5d5;
   backface-visibility: hidden;
-  transform: ${(props) => `translate3d(0,0,${-props.width / 2}px)`};
 `;
 
 const ContentBox = styled.div`
