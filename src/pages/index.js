@@ -18,8 +18,10 @@ const Home = () => {
     typeof window !== `undefined` &&
       Math.max(Math.min(document.documentElement.clientWidth, 600), 312),
   );
+  if (!cubeWidth) {
+    return null
+  }
   const [activeSide, setActiveSide] = useState('show-front');
-
   useEffect(() => {
     function handleResize() {
       setCubeWidth(
@@ -121,16 +123,9 @@ const Home = () => {
         <div id="wrapper">
           <CubeContainer
             ref={cubecontainer}
-            id="cubecontainer"
-            className="container"
           >
-            <Cube width={cubeWidth} ref={cube} id="cube" className="show-front">
-              <Side
-                width={cubeWidth}
-                ref={front}
-                id="frontside"
-                className="side front"
-              >
+            <Cube width={cubeWidth} ref={cube} >
+              <Side ref={front}>
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
@@ -170,7 +165,7 @@ const Home = () => {
                 </ContentBox>
               </Side>
 
-              <Side ref={back} id="backside" className="side back">
+              <Side ref={back}>
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
@@ -210,9 +205,9 @@ const Home = () => {
                 </ContentBox>
               </Side>
 
-              <Side ref={right} id="rightside" className="side right" />
+              <Side ref={right} />
 
-              <Side ref={left} id="leftside" className="side left">
+              <Side ref={left}>
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
@@ -252,8 +247,8 @@ const Home = () => {
                 </ContentBox>
               </Side>
 
-              <Side ref={top} id="topside" className="side top" />
-              <Side ref={bottom} id="bottomside" className="side bottom" />
+              <Side ref={top}/>
+              <Side ref={bottom}/>
             </Cube>
           </CubeContainer>
         </div>
