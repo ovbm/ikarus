@@ -34,6 +34,7 @@ function SEO({
               lang,
             }}
             title={title}
+            link={[{ rel: 'icon', type: 'image/png', href: 'ikarus-favicon.png' }]}
             meta={[
               {
                 name: 'description',
@@ -51,7 +52,7 @@ function SEO({
                 property: 'og:image',
                 name: 'image',
                 content:
-                previewImageURL || 'https://ikarus.band/ikarus-social.png',
+                  previewImageURL || 'https://ikarus.band/ikarus-social.png',
               },
               {
                 property: 'og:type',

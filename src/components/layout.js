@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import theme from '../utils/themeconstants';
@@ -44,93 +43,69 @@ const CloseButton = styled.button`
   transform: ${(props) => (props.mobileNavExpanded ? 'scale(0.9)' : 'none')};
 `;
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mobileNavExpanded: false,
-      contentFullHeight: true,
-      windowHeight: undefined,
+const Layout = ({ children, parent, dark }) => {
+  const [mobileNavExpanded, setMobileNavExpanded] = useState(false);
+  const [contentFullHeight, setContentFullHeight] = useState(true);
+  const [windowHeight, setWindowHeight] = useState();
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (typeof document !== 'undefined') {
+        const body = document.getElementsByTagName('body')[0];
+        const height =
+          window.innerHeight ||
+          document.documentElement.clientHeight ||
+          body.clientHeight;
+        setWindowHeight(height);
+      }
     };
-  }
+    window.addEventListener('resize', updateDimensions);
+    updateDimensions();
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, []);
 
-  updateDimensions = () => {
-    if (typeof document !== 'undefined') {
-      const body = document.getElementsByTagName('body')[0];
-      const height =
-        window.innerHeight ||
-        document.documentElement.clientHeight ||
-        body.clientHeight;
-      this.setState({ windowHeight: height });
-    }
-  };
-
-  componentWillMount = () => {
-    this.updateDimensions();
-  };
-
-  componentDidMount = () => {
-    window.addEventListener('resize', this.updateDimensions);
-  };
-
-  componentWillUnmount = () => {
-    window.removeEventListener('resize', this.updateDimensions);
-  };
-
-  handleNavExpand = () => {
-    const { mobileNavExpanded } = this.state;
+  const handleNavExpand = () => {
     if (mobileNavExpanded) {
-      this.setState((prevState) => ({
-        mobileNavExpanded: !prevState.mobileNavExpanded,
-      }));
+      setMobileNavExpanded((prevState) => !prevState);
       setTimeout(() => {
-        this.setState((prevState) => ({
-          contentFullHeight: !prevState.contentFullHeight,
-        }));
+        setContentFullHeight((prevState) => !prevState);
       }, 800);
     } else {
-      this.setState((prevState) => ({
-        mobileNavExpanded: !prevState.mobileNavExpanded,
-        contentFullHeight: !prevState.contentFullHeight,
-      }));
+      setMobileNavExpanded((prevState) => !prevState);
+      setContentFullHeight((prevState) => !prevState);
     }
   };
 
-  render() {
-    const { children, parent, dark } = this.props;
-    const { mobileNavExpanded, windowHeight, contentFullHeight } = this.state;
-    return (
-      <>
-        <FontStyles />
-        <ContentBody
+  return (
+    <>
+      <FontStyles />
+      <ContentBody
+        dark={dark}
+        mobileNavExpanded={mobileNavExpanded}
+        height={windowHeight}
+        contentFullHeight={contentFullHeight}
+        onClick={() => mobileNavExpanded && handleNavExpand()}
+      >
+        <Header
+          siteTitle="Tomorrow"
+          burgerClick={() => handleNavExpand()}
+          parent={parent}
           dark={dark}
-          mobileNavExpanded={mobileNavExpanded}
-          height={windowHeight}
-          contentFullHeight={contentFullHeight}
-          onClick={() => mobileNavExpanded && this.handleNavExpand()}
-        >
-          <Header
-            siteTitle="Tomorrow"
-            burgerClick={this.handleNavExpand}
-            parent={parent}
-            dark={dark}
-          />
-          {children}
-          <Footer />
-        </ContentBody>
-        <MobileNav mobileNavExpanded={mobileNavExpanded} />
-        <CloseButton
-          mobileNavExpanded={mobileNavExpanded}
-          onClick={this.handleNavExpand}
-        >
-          Close
-        </CloseButton>
-      </>
-    );
-  }
-}
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+        />
+        {children}
+        <Footer />
+      </ContentBody>
+      <MobileNav mobileNavExpanded={mobileNavExpanded} />
+      <CloseButton
+        mobileNavExpanded={mobileNavExpanded}
+        onClick={() => handleNavExpand()}
+      >
+        Close
+      </CloseButton>
+    </>
+  );
 };
 
 export default Layout;

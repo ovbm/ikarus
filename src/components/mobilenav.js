@@ -3,55 +3,47 @@ import styled from 'styled-components';
 
 import Link from './link';
 
-export default class mobilenav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      expanded: 'company',
-    };
-  }
+const MobileNav = ({ mobileNavExpanded }) => (
+  <SlideOutNav>
+    <Container>
+      <MenuContainer mobileNavExpanded={mobileNavExpanded}>
+        <List>
+          <Item>
+            <StyledLink>
+              <Link mobilemenu="true" to="/">
+                Music
+              </Link>
+            </StyledLink>
+          </Item>
+          <Item>
+            <StyledLink>
+              <Link mobilemenu="true" to="/live">
+                Live
+              </Link>
+            </StyledLink>
+          </Item>
+          <Item>
+            <StyledLink>
+              <Link mobilemenu="true" to="/band">
+                Band
+              </Link>
+            </StyledLink>
+          </Item>
+          <Item>
+            <StyledLink>
+              <Link mobilemenu="true" to="/video">
+                Video
+              </Link>
+            </StyledLink>
+          </Item>
+        </List>
+      </MenuContainer>
+    </Container>
+  </SlideOutNav>
+);
 
-  handleExpand = (value) => {
-    this.setState({
-      expanded: value,
-    });
-  }
+export default MobileNav;
 
-  render() {
-    const { mobileNavExpanded } = this.props;
-    const { expanded } = this.state;
-    return (
-      <SlideOutNav>
-        <Container>
-          <MenuContainer mobileNavExpanded={mobileNavExpanded}>
-            <List>
-              <Item>
-                <StyledLink>
-                  <Link mobilemenu="true" to="/">Music</Link>
-                </StyledLink>
-              </Item>
-              <Item>
-                <StyledLink>
-                  <Link mobilemenu="true" to="/live">Live</Link>
-                </StyledLink>
-              </Item>
-              <Item>
-                <StyledLink>
-                  <Link mobilemenu="true" to="/band">Band</Link>
-                </StyledLink>
-              </Item>
-              <Item>
-                <StyledLink>
-                  <Link mobilemenu="true" to="/video">Video</Link>
-                </StyledLink>
-              </Item>
-            </List>
-          </MenuContainer>
-        </Container>
-      </SlideOutNav>
-    );
-  }
-}
 const StyledLink = styled.h3`
   font-weight: 500;
   margin-bottom: 1em !important;
@@ -81,20 +73,21 @@ const MenuContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-  transform: ${(props) => (props.mobileNavExpanded ? 'translateX(0px)' : 'translateX(100px)')};
+  transform: ${(props) =>
+    props.mobileNavExpanded ? 'translateX(0px)' : 'translateX(100px)'};
 `;
 
 const List = styled.ul`
   list-style: none;
-  margin-left: 0; 
+  margin-left: 0;
   &.sublist {
-    margin-left: 1.666em; 
-    li{
+    margin-left: 1.666em;
+    li {
       opacity: ${(props) => (props.expanded ? 1 : 0)};
       transition: opacity 0.4s cubic-bezier(0.2, 1, 0.3, 1);
       a {
-          white-space: nowrap;
-        }
+        white-space: nowrap;
+      }
     }
     li:nth-child(1) {
       transition-delay: 0.1s;
@@ -111,5 +104,4 @@ const List = styled.ul`
   }
 `;
 
-const Item = styled.li`
-`;
+const Item = styled.li``;

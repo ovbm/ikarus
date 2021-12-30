@@ -5,40 +5,35 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import theme from '../utils/themeconstants';
 
-export default () => {
-  return (
-    <Layout>
-      <SEO
-        title="Ikarus - Vieos"
-        description=""
-      />
-      <Content>
-        <h3>Ikarus - Oumuamua</h3>
-        <VideoContainer>
-          <iframe
-            title="Ikarus - Oumuamua"
-            width="480"
-            height="270"
-            src="https://www.youtube.com/embed/MMCtCtnmXxY?rel=0&amp;controls=0&amp;showinfo=1"
-            frameBorder="0"
-            allowFullScreen
-          />
-        </VideoContainer>
-        <h3>Ikarus - London Jazz Festival</h3>
-        <VideoContainer>
-          <iframe
-            title="Ikarus - London Jazz Festival"
-            width="480"
-            height="270"
-            src="https://www.youtube.com/embed/9bVNkJonqgc?rel=0&amp;controls=0&amp;showinfo=1"
-            frameBorder="0"
-            allowFullScreen
-          />
-        </VideoContainer>
-      </Content>
-    </Layout>
-  );
-};
+const Video = () => (
+  <Layout>
+    <SEO title="Ikarus - Vieos" description="" />
+    <Content>
+      <h3>Ikarus - Oumuamua</h3>
+      <VideoContainer>
+        <iframe
+          title="Ikarus - Oumuamua"
+          width="480"
+          height="270"
+          src="https://www.youtube.com/embed/MMCtCtnmXxY?rel=0&amp;controls=0&amp;showinfo=1"
+          frameBorder="0"
+          allowFullScreen
+        />
+      </VideoContainer>
+      <h3>Ikarus - London Jazz Festival</h3>
+      <VideoContainer>
+        <iframe
+          title="Ikarus - London Jazz Festival"
+          width="480"
+          height="270"
+          src="https://www.youtube.com/embed/9bVNkJonqgc?rel=0&amp;controls=0&amp;showinfo=1"
+          frameBorder="0"
+          allowFullScreen
+        />
+      </VideoContainer>
+    </Content>
+  </Layout>
+);
 
 const appear = keyframes`
   from {
@@ -71,7 +66,7 @@ const VideoContainer = styled.div`
   width: 100%;
   padding-top: 48.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
   margin: 0 auto 3em;
-  iframe { 
+  iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -81,3 +76,5 @@ const VideoContainer = styled.div`
     height: 100%;
   }
 `;
+
+export default Video;

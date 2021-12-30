@@ -22,7 +22,7 @@ const monthNames = [
 ];
 const today = new Date();
 
-export default () => {
+const Live = () => {
   const [gigs, setGigs] = useState([]);
 
   const getGigs = (time) => {
@@ -151,3 +151,5 @@ const VenueLink = styled.span`
     font-size: 20px;
   }
 `;
+
+export default Live;

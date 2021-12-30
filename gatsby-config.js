@@ -8,14 +8,7 @@ module.exports = {
     url: 'https://ikarus.band',
   },
   plugins: [
-    {
-      resolve: 'gatsby-plugin-favicon',
-      options: {
-        logo: './src/images/ikarus-favicon.png',
-      },
-    },
     'gatsby-plugin-remove-trailing-slashes',
-    'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',

@@ -11,40 +11,38 @@ import AnnaImg from '../images/ikarus-portrait-anna-hirsch.jpeg';
 import LuccaImg from '../images/ikarus-portrait-lucca-fries.jpeg';
 import MoImg from '../images/ikarus-portrait-mo-meyer.jpeg';
 
-export default () => {
-  return (
-    <Layout>
-      <SEO
-        title="Ikarus - Band"
-        description="Ikarus band members: Ramón Oliveras, Anna Hirsch, Andreas Lareida, Lucca Fries, Mo Meyer."
-      />
-      <Content>
-        <Row>
-          <BandMember>
-            <Portrait src={RamonImg} alt="Ramón Oliveras, comp, drums" />
-            <Description>Ramón Oliveras | comp, drums</Description>
-          </BandMember>
-          <BandMember>
-            <Portrait src={AnnaImg} alt="Anna Hirsch, voc" />
-            <Description>Anna Hirsch | voc</Description>
-          </BandMember>
-          <BandMember>
-            <Portrait src={AndreasImg} alt="Andreas Lareida, voc" />
-            <Description>Andreas Lareida | voc</Description>
-          </BandMember>
-          <BandMember>
-            <Portrait src={LuccaImg} alt="Lucca Fries, keys" />
-            <Description>Lucca Fries | keys</Description>
-          </BandMember>
-          <BandMember>
-            <Portrait src={MoImg} alt="Mo Meyer, bass" />
-            <Description>Mo Meyer | bass</Description>
-          </BandMember>
-        </Row>
-      </Content>
-    </Layout>
-  );
-};
+const Band = () => (
+  <Layout>
+    <SEO
+      title="Ikarus - Band"
+      description="Ikarus band members: Ramón Oliveras, Anna Hirsch, Andreas Lareida, Lucca Fries, Mo Meyer."
+    />
+    <Content>
+      <Row>
+        <BandMember>
+          <Portrait src={RamonImg} alt="Ramón Oliveras, comp, drums" />
+          <Description>Ramón Oliveras | comp, drums</Description>
+        </BandMember>
+        <BandMember>
+          <Portrait src={AnnaImg} alt="Anna Hirsch, voc" />
+          <Description>Anna Hirsch | voc</Description>
+        </BandMember>
+        <BandMember>
+          <Portrait src={AndreasImg} alt="Andreas Lareida, voc" />
+          <Description>Andreas Lareida | voc</Description>
+        </BandMember>
+        <BandMember>
+          <Portrait src={LuccaImg} alt="Lucca Fries, keys" />
+          <Description>Lucca Fries | keys</Description>
+        </BandMember>
+        <BandMember>
+          <Portrait src={MoImg} alt="Mo Meyer, bass" />
+          <Description>Mo Meyer | bass</Description>
+        </BandMember>
+      </Row>
+    </Content>
+  </Layout>
+);
 
 const appear = keyframes`
   from {
@@ -112,3 +110,5 @@ const Description = styled.p`
     width: 80%;
   }
 `;
+
+export default Band;
