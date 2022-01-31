@@ -10,7 +10,7 @@ const MobileNav = ({ mobileNavExpanded }) => (
         <List>
           <Item>
             <StyledLink>
-              <Link mobilemenu="true" to="/">
+              <Link mobilemenu="true" to="/" partiallyActive={false}>
                 Music
               </Link>
             </StyledLink>

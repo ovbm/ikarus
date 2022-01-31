@@ -21,7 +21,7 @@ const Band = () => (
           <a href="http://www.ramonoliveras.com" rel="noreferrer" target="_blank">
             Ramón Oliveras
           </a>
-          , comp and drums | Andreas Lareida, voc
+          , drums and artistic director | Andreas Lareida, voc
         </Description>
       </Row>
     </Content>

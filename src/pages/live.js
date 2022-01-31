@@ -79,7 +79,6 @@ const Live = () => {
                     <br />
                     <City>{concert.venue.city}</City>
                     <br />
-
                     <VenueLink>
                       <Link href={concert.description} outward>
                         {concert.venue.name}

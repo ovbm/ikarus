@@ -20,7 +20,7 @@ const Header = ({ burgerClick }) => (
         </Link>
       </SocialLinks>
       <Navigation>
-        <Link to="/">Music</Link>
+        <Link to="/" partiallyActive={false}>Music</Link>
         <Link to="/live">Live</Link>
         <Link to="/band">Band</Link>
         <Link to="/video">Video</Link>

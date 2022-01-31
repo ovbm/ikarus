@@ -44,7 +44,7 @@ export default function link({
   mobilemenu,
   href,
   style,
-  partiallyActive,
+  partiallyActive = true,
 }) {
   return href ? (
     <StyledOutwardLink
@@ -59,7 +59,7 @@ export default function link({
     </StyledOutwardLink>
   ) : (
     <StyledLink
-      partiallyActive
+      partiallyActive={partiallyActive}
       activeStyle={{
         fontWeight: 900,
       }}
