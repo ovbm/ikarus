@@ -2,7 +2,7 @@
  "name": "ikarus.band",
  "private": true,
  "description": "frontent of ikarus.band",
- "version": "1.0.1",
+ "version": "1.1.0",
  "author": "Olivier Baumann <olivier@iovi.io>",
  "dependencies": {
   "gatsby": "^3.4.0",

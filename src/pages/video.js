@@ -64,7 +64,7 @@ const VideoContainer = styled.div`
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding-top: 48.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
   margin: 0 auto 3em;
   iframe {
     position: absolute;

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title:
-    'IKARUS, contemporary groove jazz. Album MOSAISMIC out now.',
+    'IKARUS, contemporary groove jazz. New Album Plasma out now.',
     description:
       'Official page of the Zurich based contemporary groove jazz band IKARUS. Compositions by Ramón Oliveras. Currently on tour with their second Album Mosaismic.',
     author: 'Ramón Oliveras',

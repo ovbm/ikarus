@@ -5,11 +5,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import theme from '../utils/themeconstants';
 
-import AndreasImg from '../images/ikarus-portrait-andreas-lareida.jpeg';
-import RamonImg from '../images/ikarus-portrait-ramon-oliveras.jpeg';
-import AnnaImg from '../images/ikarus-portrait-anna-hirsch.jpeg';
-import LuccaImg from '../images/ikarus-portrait-lucca-fries.jpeg';
-import MoImg from '../images/ikarus-portrait-mo-meyer.jpeg';
+import BandImg from '../images/ikarus-band-image.jpg';
 
 const Band = () => (
   <Layout>
@@ -19,26 +15,14 @@ const Band = () => (
     />
     <Content>
       <Row>
-        <BandMember>
-          <Portrait src={RamonImg} alt="Ramón Oliveras, comp, drums" />
-          <Description>Ramón Oliveras | comp, drums</Description>
-        </BandMember>
-        <BandMember>
-          <Portrait src={AnnaImg} alt="Anna Hirsch, voc" />
-          <Description>Anna Hirsch | voc</Description>
-        </BandMember>
-        <BandMember>
-          <Portrait src={AndreasImg} alt="Andreas Lareida, voc" />
-          <Description>Andreas Lareida | voc</Description>
-        </BandMember>
-        <BandMember>
-          <Portrait src={LuccaImg} alt="Lucca Fries, keys" />
-          <Description>Lucca Fries | keys</Description>
-        </BandMember>
-        <BandMember>
-          <Portrait src={MoImg} alt="Mo Meyer, bass" />
-          <Description>Mo Meyer | bass</Description>
-        </BandMember>
+        <Portrait src={BandImg} alt="Ikarus Band image" />
+        <Description>
+          ltr: Mo Meyer, bass | Anna Hirsch, voc | Lucca Fries, keys |{' '}
+          <a href="http://www.ramonoliveras.com" rel="noreferrer" target="_blank">
+            Ramón Oliveras
+          </a>
+          , comp and drums | Andreas Lareida, voc
+        </Description>
       </Row>
     </Content>
   </Layout>
@@ -79,24 +63,9 @@ const Row = styled.div`
   }
 `;
 
-const BandMember = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2em;
-  &:not(:nth-of-type(3n + 1)) {
-    margin-left: 1em;
-    @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {
-      margin-left: 0;
-    }
-  }
-`;
-
 const Portrait = styled.img`
-  width: 200px;
-  height: 200px;
   @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {
-    width: 80%;
+    width: 100%;
     height: auto;
     margin: 0 auto 1em auto;
   }
@@ -104,10 +73,8 @@ const Portrait = styled.img`
 
 const Description = styled.p`
   font-size: 13px;
-  text-align: center;
-  width: 200px;
   @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {
-    width: 80%;
+    width: 100%;
   }
 `;
 

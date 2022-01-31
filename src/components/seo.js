@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
+import theme from '../utils/themeconstants';
 
 function SEO({
   description,
@@ -34,7 +35,9 @@ function SEO({
               lang,
             }}
             title={title}
-            link={[{ rel: 'icon', type: 'image/png', href: 'ikarus-favicon.png' }]}
+            link={[
+              { rel: 'icon', type: 'image/png', href: 'ikarus-favicon.png' },
+            ]}
             meta={[
               {
                 name: 'description',
@@ -93,16 +96,7 @@ function SEO({
                   : [],
               )
               .concat(meta)}
-          >
-            <style type="text/css">
-              {` 
-                body {
-                  -webkit-font-smoothing: antialiased;
-                  background-color: #F6F9FC;
-                }
-              `}
-            </style>
-          </Helmet>
+          />
         );
       }}
     />

@@ -4,6 +4,9 @@ import styled, { keyframes } from 'styled-components';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Link from '../components/link';
+import theme from '../utils/themeconstants';
+
+import PlasmaImg from '../images/ikarus-plasma-cover.png';
 
 const Home = () => {
   const front = useRef();
@@ -19,7 +22,7 @@ const Home = () => {
       Math.max(Math.min(document.documentElement.clientWidth, 600), 312),
   );
   if (!cubeWidth) {
-    return null
+    return null;
   }
   const [activeSide, setActiveSide] = useState('show-front');
   useEffect(() => {
@@ -90,7 +93,7 @@ const Home = () => {
   };
 
   return (
-    <Layout>
+    <Layout activeSide={activeSide}>
       <SEO
         title="IKARUS - Music, Mosiasmic out now"
         description="Official page of the Zurich based band IKARUS. Compositions by Ramón Oliveras. Currently on tour with their second Album Mosaismic."
@@ -99,13 +102,23 @@ const Home = () => {
         <ButtonContainer>
           <Button
             active={activeSide === 'show-front'}
+            activeSide={activeSide}
             type="button"
             onClick={() => onButtonClick('show-front')}
+          >
+            PLASMA
+          </Button>
+          <Button
+            active={activeSide === 'show-right'}
+            activeSide={activeSide}
+            type="button"
+            onClick={() => onButtonClick('show-right')}
           >
             MOSAISMIC
           </Button>
           <Button
             active={activeSide === 'show-left'}
+            activeSide={activeSide}
             onClick={() => onButtonClick('show-left')}
             type="button"
           >
@@ -113,6 +126,7 @@ const Home = () => {
           </Button>
           <Button
             active={activeSide === 'show-back'}
+            activeSide={activeSide}
             onClick={() => onButtonClick('show-back')}
             type="button"
           >
@@ -121,51 +135,16 @@ const Home = () => {
         </ButtonContainer>
 
         <div id="wrapper">
-          <CubeContainer
-            ref={cubecontainer}
-          >
-            <Cube width={cubeWidth} ref={cube} >
-              <Side ref={front}>
+          <CubeContainer ref={cubecontainer}>
+            <Cube width={cubeWidth} ref={cube}>
+              <Side activeSide={activeSide} ref={front}>
                 <ContentBox>
-                  <IFrameBox>
-                    <ResponsiveIFrame
-                      title="Mosaismic"
-                      style={{ border: 0 }}
-                      src="https://bandcamp.com/EmbeddedPlayer/album=3587457344/size=large/bgcol=transparent/linkcol=63b2cc/minimal=true/transparent=true/"
-                      seamless
-                    >
-                      <a href="https://www.nikbaertsch.com/ronin-rhythm-records/ikarus.html">
-                        Mosaismic by IKARUS
-                      </a>
-                    </ResponsiveIFrame>
-                  </IFrameBox>
-                  <p style={{ color: 'white' }}>
-                    <Link
-                      outward
-                      href="http://roninrhythmrecords.bandcamp.com/album/mosaismic"
-                      target="_blank"
-                    >
-                      Bandcamp
-                    </Link>{' '}
-                    <Link
-                      outward
-                      href="https://itunes.apple.com/ch/album/mosaismic/1456623755?l=en"
-                      target="_blank"
-                    >
-                      Apple Music
-                    </Link>{' '}
-                    <Link
-                      outward
-                      href="https://open.spotify.com/album/5mV7SxyBEXZZRIGsCP2OpK"
-                      target="_blank"
-                    >
-                      Spotify
-                    </Link>
-                  </p>
+                  Ikarus Plasma, 25.02.2022
+                  <img src={PlasmaImg} alt="Albumcover Plasma by Ikarus" />
                 </ContentBox>
               </Side>
 
-              <Side ref={back}>
+              <Side activeSide={activeSide} ref={back}>
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
@@ -205,9 +184,47 @@ const Home = () => {
                 </ContentBox>
               </Side>
 
-              <Side ref={right} />
+              <Side activeSide={activeSide} ref={right}>
+                <ContentBox>
+                  <IFrameBox>
+                    <ResponsiveIFrame
+                      title="Mosaismic"
+                      style={{ border: 0 }}
+                      src="https://bandcamp.com/EmbeddedPlayer/album=3587457344/size=large/bgcol=transparent/linkcol=63b2cc/minimal=true/transparent=true/"
+                      seamless
+                    >
+                      <a href="https://www.nikbaertsch.com/ronin-rhythm-records/ikarus.html">
+                        Mosaismic by IKARUS
+                      </a>
+                    </ResponsiveIFrame>
+                  </IFrameBox>
+                  <p style={{ color: 'white' }}>
+                    <Link
+                      outward
+                      href="http://roninrhythmrecords.bandcamp.com/album/mosaismic"
+                      target="_blank"
+                    >
+                      Bandcamp
+                    </Link>{' '}
+                    <Link
+                      outward
+                      href="https://itunes.apple.com/ch/album/mosaismic/1456623755?l=en"
+                      target="_blank"
+                    >
+                      Apple Music
+                    </Link>{' '}
+                    <Link
+                      outward
+                      href="https://open.spotify.com/album/5mV7SxyBEXZZRIGsCP2OpK"
+                      target="_blank"
+                    >
+                      Spotify
+                    </Link>
+                  </p>
+                </ContentBox>
+              </Side>
 
-              <Side ref={left}>
+              <Side activeSide={activeSide} ref={left}>
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
@@ -247,8 +264,8 @@ const Home = () => {
                 </ContentBox>
               </Side>
 
-              <Side ref={top}/>
-              <Side ref={bottom}/>
+              <Side activeSide={activeSide} ref={top} />
+              <Side activeSide={activeSide} ref={bottom} />
             </Cube>
           </CubeContainer>
         </div>
@@ -296,19 +313,27 @@ const Content = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  margin: 2em auto;
+  margin: 2em auto 2.5em auto;
   width: 100%;
   max-width: 40em;
   text-align: center;
+  @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {
+    margin: 1.5em auto 2em auto;
+  }
 `;
 
 const Button = styled.button`
-  margin: 0 1em;
+  margin: 0 1em 0.5em 1em;
   background: none;
-  color: white;
   border: none;
+  font-size: 1.4em;
+  color: ${(props) =>
+    props.activeSide
+      ? `var(--text-${props.activeSide})`
+      : props.dark
+      ? 'white'
+      : 'black'};
   padding: 0;
-  font: inherit;
   cursor: pointer;
   outline: inherit;
   transition: all 0.3s ease 0s;
@@ -341,7 +366,10 @@ const Side = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 2px solid #9bc5d5;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--bg);
+  transition: border-color 2s cubic-bezier(0.2, 1, 0.3, 1);
   backface-visibility: hidden;
 `;
 

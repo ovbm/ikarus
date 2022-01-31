@@ -5,16 +5,15 @@ import theme from '../utils/themeconstants';
 import Header from './header';
 import Footer from './footer';
 import MobileNav from './mobilenav';
-import FontStyles from '../utils/fontstyles';
 
 const ContentBody = styled.div`
   z-index: 10;
   position: relative;
   top: 0;
   transform-origin: right;
-  background-color: ${(props) =>
-    props.dark ? 'black' : theme.colors.bgPrimary};
-  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  background-color: var(--bg);
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1),
+    background-color 2s cubic-bezier(0.2, 1, 0.3, 1);
   transform: ${(props) =>
     props.mobileNavExpanded
       ? 'scale(0.84) translateX(-93vw) translateZ(0)!important'
@@ -43,7 +42,7 @@ const CloseButton = styled.button`
   transform: ${(props) => (props.mobileNavExpanded ? 'scale(0.9)' : 'none')};
 `;
 
-const Layout = ({ children, parent, dark }) => {
+const Layout = ({ children, activeSide }) => {
   const [mobileNavExpanded, setMobileNavExpanded] = useState(false);
   const [contentFullHeight, setContentFullHeight] = useState(true);
   const [windowHeight, setWindowHeight] = useState();
@@ -80,22 +79,16 @@ const Layout = ({ children, parent, dark }) => {
 
   return (
     <>
-      <FontStyles />
       <ContentBody
-        dark={dark}
+        activeSide={activeSide}
         mobileNavExpanded={mobileNavExpanded}
         height={windowHeight}
         contentFullHeight={contentFullHeight}
         onClick={() => mobileNavExpanded && handleNavExpand()}
       >
-        <Header
-          siteTitle="Tomorrow"
-          burgerClick={() => handleNavExpand()}
-          parent={parent}
-          dark={dark}
-        />
+        <Header burgerClick={() => handleNavExpand()} />
         {children}
-        <Footer />
+        <Footer activeSide={activeSide} />
       </ContentBody>
       <MobileNav mobileNavExpanded={mobileNavExpanded} />
       <CloseButton
@@ -104,6 +97,33 @@ const Layout = ({ children, parent, dark }) => {
       >
         Close
       </CloseButton>
+      <style>
+        {`
+          :root {
+            --text: ${
+              activeSide === 'show-back' || activeSide === 'show-right'
+                ? 'black'
+                : 'white'
+            };
+            --link: ${
+              activeSide === 'show-back' || activeSide === 'show-right'
+                ? theme.colors.bgPrimary
+                : '#FDE497'
+            };
+            --bg: ${
+              activeSide === 'show-front'
+                ? theme.colors.bgPrimary
+                : activeSide === 'show-right'
+                ? theme.colors.bgMosaismic
+                : activeSide === 'show-left'
+                ? theme.colors.bgChronosome
+                : activeSide === 'show-back'
+                ? theme.colors.bgEcho
+                : theme.colors.bgPrimary
+            };
+          }
+        `}
+      </style>
     </>
   );
 };

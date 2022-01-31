@@ -7,66 +7,50 @@ import theme from '../utils/themeconstants';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: ${
-  (props) => {
+  color: ${(props) => {
     if (props.mobilemenu) {
       return 'black';
     }
     if (props.inverted) {
       return 'white';
     }
-    if (props.linkcolor) {
-      return props.linkcolor;
-    }
-    return theme.colors.blue;
-  }
-};
-  transition: opacity 0.4s, color 0.4s;
+    return 'var(--link)';
+  }};
   :hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 `;
 
 const StyledOutwardLink = styled.a`
   text-decoration: underline;
-  color: ${
-  (props) => {
+  color: ${(props) => {
     if (props.mobilemenu) {
       return 'black';
     }
     if (props.inverted) {
       return 'white';
     }
-    if (props.linkcolor) {
-      return props.linkcolor;
-    }
-    return 'white';
-  }
-};  transition: color 0.4s, opacity 0.4s;
+    return 'var(--link)';
+  }};
   :hover {
-    opacity: 0.8;
-    color: ${theme.colors.primary};
+    opacity: 0.7;
   }
 `;
-
 
 export default function link({
   to,
   children,
   inverted,
   mobilemenu,
-  linkcolor,
-  outward,
   href,
   style,
   partiallyActive,
 }) {
-  return (outward ? (
+  return href ? (
     <StyledOutwardLink
       partiallyActive={partiallyActive}
       href={href}
       inverted={inverted}
-      linkcolor={linkcolor}
       mobilemenu={mobilemenu}
       style={style}
       target="_blank"
@@ -75,24 +59,18 @@ export default function link({
     </StyledOutwardLink>
   ) : (
     <StyledLink
-      partiallyActive={partiallyActive}
-      activeStyle={
-            mobilemenu ? {
-              color: theme.colors.blue,
-            } : {
-              color: linkcolor,
-              fontWeight: 900,
-            }
-        }
+      partiallyActive
+      activeStyle={{
+        fontWeight: 900,
+      }}
       mobilemenu={mobilemenu}
       to={to}
       inverted={inverted}
-      linkcolor={linkcolor}
       style={style}
     >
       {children}
     </StyledLink>
-  ));
+  );
 }
 
 link.propTypes = {

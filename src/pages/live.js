@@ -24,7 +24,6 @@ const today = new Date();
 
 const Live = () => {
   const [gigs, setGigs] = useState([]);
-
   const getGigs = (time) => {
     const url = `https://rest.bandsintown.com/artists/Ikarus/events?app_id=mockingbird${
       time === 'past' ? '&date=past' : ''
@@ -70,7 +69,7 @@ const Live = () => {
           const mm = monthNames[formattedDate.getMonth()];
           const yyyy = formattedDate.getFullYear();
           return (
-            <div>
+            <div key={concert.venue.name}>
               <p style={{ textAlign: 'center' }}>
                 {isPastGig ? (
                   `${dd} ${mm} ${yyyy}, ${concert.venue.name}, ${concert.venue.city} ${concert.venue.country} `
@@ -78,13 +77,16 @@ const Live = () => {
                   <>
                     <span>{`${dd} ${mm} ${yyyy}`}</span>
                     <br />
+                    <City>{concert.venue.city}</City>
+                    <br />
+
                     <VenueLink>
                       <Link href={concert.description} outward>
                         {concert.venue.name}
                       </Link>
                     </VenueLink>
                     <br />
-                    <span>{`${concert.venue.city}, ${concert.venue.country}`}</span>
+                    <span>{concert.venue.country}</span>
                   </>
                 )}
               </p>
@@ -123,10 +125,13 @@ const Content = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  margin: 2em auto;
+  margin: 2em auto 2.5em auto;
   width: 100%;
   max-width: 40em;
   text-align: center;
+  @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {
+    margin: 1.5em auto 2em auto;
+  }
 `;
 
 const Button = styled.button`
@@ -135,7 +140,7 @@ const Button = styled.button`
   color: white;
   border: none;
   padding: 0;
-  font: inherit;
+  font-size: 1.4em;
   cursor: pointer;
   outline: inherit;
   transition: all 0.3s ease 0s;
@@ -145,6 +150,14 @@ const Button = styled.button`
 `;
 
 const VenueLink = styled.span`
+  font-size: 19px;
+  font-weight: bold;
+  @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {
+    font-size: 17px;
+  }
+`;
+
+const City = styled.span`
   font-size: 24px;
   font-weight: bold;
   @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {

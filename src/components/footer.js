@@ -5,7 +5,7 @@ import addToMailchimp from 'gatsby-plugin-mailchimp';
 import theme from '../utils/themeconstants';
 import Link from './link';
 
-function Footer() {
+function Footer({ activeSide }) {
   const [email, setEmail] = useState('');
   const [result, setResult] = useState();
 
@@ -29,7 +29,7 @@ function Footer() {
     setEmail(e.target.value);
   }
   return (
-    <Container>
+    <Container activeSide={activeSide}>
       <Content>
         <div style={{ textAlign: 'center', fontSize: 15 }}>
           <form
@@ -39,8 +39,9 @@ function Footer() {
             <EmailInput
               style={{ fontSize: 15, width: '100%' }}
               type="email"
-              placeholder="Newlsetter Signup"
+              placeholder="Newsletter Signup"
               value={email}
+              // eslint-disable-next-line react/jsx-no-bind
               onChange={handleEmailChange}
             />
             <SubmitButton type="submit">Subscribe</SubmitButton>
@@ -48,9 +49,16 @@ function Footer() {
           {result ? <ResultMessage>{result.msg}</ResultMessage> : null}
         </div>
       </Content>
-      <p style={{ textAlign: 'center', marginTop: 16, fontSize: 15, lineHeight: 2 }}>
+      <p
+        style={{
+          textAlign: 'center',
+          marginTop: 16,
+          fontSize: 15,
+          lineHeight: 2,
+        }}
+      >
         Contact:
-        <Link outward target="_blank" href="mailto:contact@ikarus.band">
+        <Link target="_blank" href="mailto:contact@ikarus.band">
           contact@ikarus.band
         </Link>
         {' / '}
@@ -72,13 +80,8 @@ function Footer() {
         </Link>
         {' / '}
         PR Germany:
-        <Link outward target="_blank" href="http://www.qrious.de/">
-          Qrious
-        </Link>
-        {' / '}
-        PR Benelux:
-        <Link outward target="_blank" href="http://stilletto.be/en/">
-          Stilletto
+        <Link outward target="_blank" href="https://www.cubus-music.de/">
+          Cubus Music
         </Link>
         {' / '}
         PR and Booking Japan:
@@ -99,7 +102,11 @@ export default Footer;
 const Container = styled.div`
   z-index: 999;
   padding: 4em;
-  background-color: ${theme.colors.bgPrimary};
+  background-color: ${(props) =>
+    props.activeSide
+      ? `var(--bg-${props.activeSide})`
+      : theme.colors.bgPrimary};
+  transition: background-color 2s cubic-bezier(0.2, 1, 0.3, 1);
   @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {
     padding: 4em 1.5em;
   }
