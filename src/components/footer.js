@@ -74,7 +74,7 @@ function Footer({ activeSide }) {
         <Link
           outward
           target="_blank"
-          href="http://www.nikbaertsch.com/de/sound/"
+          href="https://www.nikbaertsch.com/ronin-rhythm-records.html"
         >
           Ronin Rhythm Records
         </Link>

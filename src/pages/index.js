@@ -141,7 +141,7 @@ const Home = () => {
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
-                      title="Mosaismic"
+                      title="Plasma"
                       style={{ border: 0 }}
                       src="https://bandcamp.com/EmbeddedPlayer/album=299878111/size=large/bgcol=transparent/linkcol=e99708/minimal=true/transparent=true/"
                       seamless
@@ -158,7 +158,7 @@ const Home = () => {
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
-                      title="Mosaismic"
+                      title="Echo"
                       style={{ border: 0 }}
                       src="https://bandcamp.com/EmbeddedPlayer/album=4284248548/size=large/bgcol=transparent/linkcol=63b2cc/minimal=true/transparent=true/"
                       seamless
@@ -238,7 +238,7 @@ const Home = () => {
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
-                      title="Mosaismic"
+                      title="Chronosome"
                       style={{ border: 0 }}
                       src="https://bandcamp.com/EmbeddedPlayer/album=2100488339/size=large/bgcol=transparent/linkcol=63b2cc/minimal=true/transparent=true/"
                       seamless

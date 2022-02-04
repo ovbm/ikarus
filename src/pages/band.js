@@ -17,8 +17,32 @@ const Band = () => (
       <Row>
         <Portrait src={BandImg} alt="Ikarus Band image" />
         <Description>
-          ltr: Mo Meyer, bass | Anna Hirsch, voc | Lucca Fries, keys |{' '}
-          <a href="http://www.ramonoliveras.com" rel="noreferrer" target="_blank">
+          ltr:{' '}
+          <a href="http://momeyer.ch" rel="noreferrer" target="_blank">
+            Mo Meyer
+          </a>
+          , bass |{' '}
+          <a
+            href="http://www.anna-hirsch.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Anna Hirsch
+          </a>
+          , voc |{' '}
+          <a
+            href="http://www.luccafries.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Lucca Fries
+          </a>
+          , keys |{' '}
+          <a
+            href="http://www.ramonoliveras.com"
+            rel="noreferrer"
+            target="_blank"
+          >
             Ramón Oliveras
           </a>
           , drums and artistic director | Andreas Lareida, voc
