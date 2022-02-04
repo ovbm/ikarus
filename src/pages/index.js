@@ -139,8 +139,18 @@ const Home = () => {
             <Cube width={cubeWidth} ref={cube}>
               <Side activeSide={activeSide} ref={front}>
                 <ContentBox>
-                  Ikarus Plasma, 25.02.2022
-                  <img src={PlasmaImg} alt="Albumcover Plasma by Ikarus" />
+                  <IFrameBox>
+                    <ResponsiveIFrame
+                      title="Mosaismic"
+                      style={{ border: 0 }}
+                      src="https://bandcamp.com/EmbeddedPlayer/album=299878111/size=large/bgcol=transparent/linkcol=e99708/minimal=true/transparent=true/"
+                      seamless
+                    >
+                      <a href="https://roninrhythmrecords.bandcamp.com/album/plasma">
+                      Plasma by IKARUS
+                      </a>
+                    </ResponsiveIFrame>
+                  </IFrameBox>
                 </ContentBox>
               </Side>
 
