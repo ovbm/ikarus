@@ -147,10 +147,19 @@ const Home = () => {
                       seamless
                     >
                       <a href="https://roninrhythmrecords.bandcamp.com/album/plasma">
-                      Plasma by IKARUS
+                        Plasma by IKARUS
                       </a>
                     </ResponsiveIFrame>
                   </IFrameBox>
+                  <p>
+                    <Link
+                      outward
+                      href="https://lnk.site/plasma"
+                      target="_blank"
+                    >
+                      Stream or Buy Plasma
+                    </Link>
+                  </p>
                 </ContentBox>
               </Side>
 
