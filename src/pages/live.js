@@ -20,18 +20,18 @@ const monthNames = [
   'November',
   'December',
 ];
-const today = new Date();
 
 const Live = () => {
   const [gigs, setGigs] = useState([]);
-  const getGigs = (time) => {
-    const url = `https://rest.bandsintown.com/artists/Ikarus/events?app_id=mockingbird${
-      time === 'past' ? '&date=past' : ''
-    }`;
+  const [upcoming, setUpcoming] = useState(true);
+
+  const getGigs = () => {
+    const url =
+      'https://rest.bandsintown.com/artists/Ikarus/events?app_id=mockingbird&date=all';
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setGigs(time === 'past' ? data.reverse() : data);
+        setGigs(data);
       })
       .catch(console.log);
   };
@@ -39,6 +39,12 @@ const Live = () => {
   useEffect(() => {
     getGigs();
   }, []);
+
+  const today = new Date();
+
+  const filteredGigs = upcoming
+    ? gigs.filter((gig) => new Date(gig.datetime) >= today)
+    : gigs.filter((gig) => new Date(gig.datetime) < today).reverse();
 
   return (
     <Layout>
@@ -48,30 +54,29 @@ const Live = () => {
       />
       <Content>
         <ButtonContainer>
-          <Button type="button" onClick={() => getGigs('upcoming')}>
+          <Button type="button" active={upcoming} onClick={() => setUpcoming(true)}>
             UPCOMING
           </Button>
-          <Button type="button" onClick={() => getGigs('past')}>
+          <Button type="button" active={!upcoming} onClick={() => setUpcoming(false)}>
             PAST
           </Button>
         </ButtonContainer>
-        {gigs.map((concert) => {
+        {filteredGigs.map((concert) => {
           // split out the date string
           const dateItem = concert.datetime.split('-');
           // grab the first two characters of the last part of the split out date string
           const day = dateItem[2].substr(0, 2);
           // create a date object
           const formattedDate = new Date(dateItem[0], dateItem[1] - 1, day);
-          const isPastGig = formattedDate < today;
           // set the date
           const dd = formattedDate.getDate();
           // set the month and reference the month name from the monthNames array
           const mm = monthNames[formattedDate.getMonth()];
           const yyyy = formattedDate.getFullYear();
           return (
-            <div key={concert.venue.name}>
+            <div key={concert.datetime}>
               <p style={{ textAlign: 'center' }}>
-                {isPastGig ? (
+                {!upcoming ? (
                   `${dd} ${mm} ${yyyy}, ${concert.venue.name}, ${concert.venue.city} ${concert.venue.country} `
                 ) : (
                   <>
@@ -140,6 +145,7 @@ const Button = styled.button`
   border: none;
   padding: 0;
   font-size: 1.4em;
+  font-weight: ${(props) => (props.active ? 'bold' : 'normal')};
   cursor: pointer;
   outline: inherit;
   transition: all 0.3s ease 0s;
