@@ -9,6 +9,17 @@ const Video = () => (
   <Layout>
     <SEO title="Ikarus - Vieos" description="" />
     <Content>
+    <h3>Ikarus - Tritium</h3>
+      <VideoContainer>
+        <iframe
+          title="Ikarus - Tritium"
+          width="480"
+          height="270"
+          src="https://www.youtube.com/embed/dJpJyJ6i1G0?rel=0&amp;controls=0&amp;showinfo=1"
+          frameBorder="0"
+          allowFullScreen
+        />
+      </VideoContainer>
       <h3>Ikarus - Oumuamua</h3>
       <VideoContainer>
         <iframe

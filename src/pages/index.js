@@ -106,6 +106,14 @@ const Home = () => {
             type="button"
             onClick={() => onButtonClick('show-front')}
           >
+            TRITIUM
+          </Button>
+          <Button
+            active={activeSide === 'show-top'}
+            activeSide={activeSide}
+            type="button"
+            onClick={() => onButtonClick('show-top')}
+          >
             PLASMA
           </Button>
           <Button
@@ -141,25 +149,12 @@ const Home = () => {
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
-                      title="Plasma"
+                      title="Chronosome"
                       style={{ border: 0 }}
-                      src="https://bandcamp.com/EmbeddedPlayer/album=299878111/size=large/bgcol=transparent/linkcol=e99708/minimal=true/transparent=true/"
+                      src="https://www.youtube.com/embed/dJpJyJ6i1G0?rel=0&amp;controls=0&amp;showinfo=1"
                       seamless
-                    >
-                      <a href="https://roninrhythmrecords.bandcamp.com/album/plasma">
-                        Plasma by IKARUS
-                      </a>
-                    </ResponsiveIFrame>
+                    />
                   </IFrameBox>
-                  <p>
-                    <Link
-                      outward
-                      href="https://lnk.site/plasma"
-                      target="_blank"
-                    >
-                      Stream or Buy Plasma
-                    </Link>
-                  </p>
                 </ContentBox>
               </Side>
 
@@ -283,7 +278,31 @@ const Home = () => {
                 </ContentBox>
               </Side>
 
-              <Side activeSide={activeSide} ref={top} />
+              <Side activeSide={activeSide} ref={top}>
+                <ContentBox>
+                  <IFrameBox>
+                    <ResponsiveIFrame
+                      title="Plasma"
+                      style={{ border: 0 }}
+                      src="https://bandcamp.com/EmbeddedPlayer/album=299878111/size=large/bgcol=transparent/linkcol=e99708/minimal=true/transparent=true/"
+                      seamless
+                    >
+                      <a href="https://roninrhythmrecords.bandcamp.com/album/plasma">
+                        Plasma by IKARUS
+                      </a>
+                    </ResponsiveIFrame>
+                  </IFrameBox>
+                  <p>
+                    <Link
+                      outward
+                      href="https://lnk.site/plasma"
+                      target="_blank"
+                    >
+                      Stream or Buy Plasma
+                    </Link>
+                  </p>
+                </ContentBox>
+              </Side>
               <Side activeSide={activeSide} ref={bottom} />
             </Cube>
           </CubeContainer>
@@ -359,6 +378,9 @@ const Button = styled.button`
   font-weight: ${(props) => (props.active ? 'bold' : 'normal')};
   &:hover {
     letter-spacing: 0.1em;
+  }
+  @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {
+    font-size: 1.25em;
   }
 `;
 
