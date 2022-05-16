@@ -70,6 +70,11 @@ function Footer({ activeSide }) {
           Presskit
         </Link>
         {' / '}
+        Booking:
+        <Link outward target="_blank" href="https://f-cat.de">
+          f-cat
+        </Link>
+        {' / '}
         Label:
         <Link
           outward
@@ -84,13 +89,13 @@ function Footer({ activeSide }) {
           Cubus Music
         </Link>
         {' / '}
-        PR and Booking Japan:
+        PR Benelux:
         <Link
           outward
           target="_blank"
-          href="http://www.bigstream.co.jp/music/index.html"
+          href="http://stilletto.be"
         >
-          Real &amp; True
+          Inge de Pauw
         </Link>
       </p>
     </Container>

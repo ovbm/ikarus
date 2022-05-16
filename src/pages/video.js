@@ -9,13 +9,35 @@ const Video = () => (
   <Layout>
     <SEO title="Ikarus - Vieos" description="" />
     <Content>
-    <h3>Ikarus - Tritium</h3>
+    <h3>Tritium</h3>
       <VideoContainer>
         <iframe
           title="Ikarus - Tritium"
           width="480"
           height="270"
           src="https://www.youtube.com/embed/dJpJyJ6i1G0?rel=0&amp;controls=0&amp;showinfo=1"
+          frameBorder="0"
+          allowFullScreen
+        />
+      </VideoContainer>
+      <h3>Jazzahead! Showcase 2022</h3>
+      <VideoContainer>
+        <iframe
+          title="Jazzahead! Showcase 2022"
+          width="480"
+          height="270"
+          src="https://www.youtube.com/embed/videoseries?list=PLZk08irTcdtQGi4jXELHwEQ69Su1xcXnE"
+          frameBorder="0"
+          allowFullScreen
+        />
+      </VideoContainer>
+      <h3>London Jazz Festival 2021</h3>
+      <VideoContainer>
+        <iframe
+          title="Ikarus - London Jazz Festival"
+          width="480"
+          height="270"
+          src="https://www.youtube.com/embed/9bVNkJonqgc?rel=0&amp;controls=0&amp;showinfo=1"
           frameBorder="0"
           allowFullScreen
         />
@@ -31,17 +53,7 @@ const Video = () => (
           allowFullScreen
         />
       </VideoContainer>
-      <h3>Ikarus - London Jazz Festival</h3>
-      <VideoContainer>
-        <iframe
-          title="Ikarus - London Jazz Festival"
-          width="480"
-          height="270"
-          src="https://www.youtube.com/embed/9bVNkJonqgc?rel=0&amp;controls=0&amp;showinfo=1"
-          frameBorder="0"
-          allowFullScreen
-        />
-      </VideoContainer>
+
     </Content>
   </Layout>
 );

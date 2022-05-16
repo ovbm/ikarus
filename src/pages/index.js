@@ -6,8 +6,6 @@ import SEO from '../components/seo';
 import Link from '../components/link';
 import theme from '../utils/themeconstants';
 
-import PlasmaImg from '../images/ikarus-plasma-cover.png';
-
 const Home = () => {
   const front = useRef();
   const back = useRef();
@@ -106,14 +104,6 @@ const Home = () => {
             type="button"
             onClick={() => onButtonClick('show-front')}
           >
-            TRITIUM
-          </Button>
-          <Button
-            active={activeSide === 'show-top'}
-            activeSide={activeSide}
-            type="button"
-            onClick={() => onButtonClick('show-top')}
-          >
             PLASMA
           </Button>
           <Button
@@ -149,12 +139,25 @@ const Home = () => {
                 <ContentBox>
                   <IFrameBox>
                     <ResponsiveIFrame
-                      title="Chronosome"
+                      title="Plasma"
                       style={{ border: 0 }}
-                      src="https://www.youtube.com/embed/dJpJyJ6i1G0?rel=0&amp;controls=0&amp;showinfo=1"
+                      src="https://bandcamp.com/EmbeddedPlayer/album=299878111/size=large/bgcol=transparent/linkcol=e99708/minimal=true/transparent=true/"
                       seamless
-                    />
+                    >
+                      <a href="https://roninrhythmrecords.bandcamp.com/album/plasma">
+                        Plasma by IKARUS
+                      </a>
+                    </ResponsiveIFrame>
                   </IFrameBox>
+                  <p>
+                    <Link
+                      outward
+                      href="https://lnk.site/plasma"
+                      target="_blank"
+                    >
+                      Stream or Buy Plasma
+                    </Link>
+                  </p>
                 </ContentBox>
               </Side>
 
@@ -278,31 +281,7 @@ const Home = () => {
                 </ContentBox>
               </Side>
 
-              <Side activeSide={activeSide} ref={top}>
-                <ContentBox>
-                  <IFrameBox>
-                    <ResponsiveIFrame
-                      title="Plasma"
-                      style={{ border: 0 }}
-                      src="https://bandcamp.com/EmbeddedPlayer/album=299878111/size=large/bgcol=transparent/linkcol=e99708/minimal=true/transparent=true/"
-                      seamless
-                    >
-                      <a href="https://roninrhythmrecords.bandcamp.com/album/plasma">
-                        Plasma by IKARUS
-                      </a>
-                    </ResponsiveIFrame>
-                  </IFrameBox>
-                  <p>
-                    <Link
-                      outward
-                      href="https://lnk.site/plasma"
-                      target="_blank"
-                    >
-                      Stream or Buy Plasma
-                    </Link>
-                  </p>
-                </ContentBox>
-              </Side>
+              <Side activeSide={activeSide} ref={top} />
               <Side activeSide={activeSide} ref={bottom} />
             </Cube>
           </CubeContainer>
