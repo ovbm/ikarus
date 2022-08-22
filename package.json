@@ -7,7 +7,6 @@
  "dependencies": {
   "gatsby": "^3.4.0",
   "gatsby-image": "^3.4.0",
-  "gatsby-plugin-google-analytics": "^3.4.0",
   "gatsby-plugin-mailchimp": "^5.2.2",
   "gatsby-plugin-react-helmet": "^4.4.0",
   "gatsby-plugin-remove-serviceworker": "^1.0.0",
