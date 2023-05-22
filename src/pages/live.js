@@ -99,6 +99,21 @@ const Live = () => {
           </a>
         </p>
 
+        {!upcoming && (
+          <>
+            <h3 style={{ textAlign: 'center' }}>Highlights</h3>
+            <p style={{ textAlign: 'center' }}>
+              EFG London Jazz Festival EN, Jazzfestival Reykjavik IS, Jazzahead
+              Showcase Bremen DE, Internationale Jazzwoche Burghausen DE,
+              Schaffhauser Jazzfestival CH, Festival Jazz Area Metropolitana
+              Dolo IT, RAG Kyoto JP, Airegin Yokohama JP, Outreach Festival AT,
+              Jazztage Görlitz DE, Moods Zurich CH, Beeflat Bern CH,
+              Festspielhaus Hellerau DE, Festival di Jazz Chiasso CH
+            </p>
+            <h3 style={{ textAlign: 'center' }}>All</h3>
+          </>
+        )}
+
         {filteredGigs.map((concert) => {
           // split out the date string
           const dateItem = concert.datetime.split('-');
@@ -135,7 +150,9 @@ const Live = () => {
             </div>
           );
         })}
-        <p style={{ textAlign: 'center' }}>more dates to be announced</p>
+        {upcoming && (
+          <p style={{ textAlign: 'center' }}>more dates to be announced</p>
+        )}
       </Content>
     </Layout>
   );
@@ -161,9 +178,7 @@ const Content = styled.div`
   animation-delay: 0.2s;
   opacity: 0;
   animation-fill-mode: forwards;
-  @media only screen and (max-width: ${theme.dim.mobilebreakpoint}px) {
-    padding: 0px 1.5em;
-  }
+  padding: 0px 1.5em;
 `;
 
 const ButtonContainer = styled.div`

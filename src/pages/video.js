@@ -9,7 +9,18 @@ const Video = () => (
   <Layout>
     <SEO title="Ikarus - Vieos" description="" />
     <Content>
-    <h3>Tritium</h3>
+      <h3>Sessapinae, live at the Impuls Show 2023</h3>
+      <VideoContainer>
+        <iframe
+          title="Ikarus - Tritium"
+          width="480"
+          height="270"
+          src="https://www.youtube.com/embed/SGwY_3qOvvU?rel=0&amp;controls=0&amp;showinfo=1"
+          frameBorder="0"
+          allowFullScreen
+        />
+      </VideoContainer>
+      <h3>Tritium</h3>
       <VideoContainer>
         <iframe
           title="Ikarus - Tritium"
@@ -53,7 +64,6 @@ const Video = () => (
           allowFullScreen
         />
       </VideoContainer>
-
     </Content>
   </Layout>
 );
